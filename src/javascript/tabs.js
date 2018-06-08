@@ -5,6 +5,4 @@
         element.style.display = "none";
     };
 
-
-
 }());
