@@ -8,6 +8,7 @@
 		it("tabs hides an element", function() {
 			// Arrange
 			var element = document.createElement("div");
+			document.body.appendChild(element);
 
 			// Act
 			tabs.initialize(element);
