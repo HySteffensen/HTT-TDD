@@ -5,11 +5,21 @@
 	var tabs = require("./tabs.js");
 
 	describe("Tabs", function() {
+		var container;
+
+		beforeEach(function() {
+			container = document.createElement("div");
+			document.body.appendChild(container);
+		});
+
+		afterEach(function() {
+			removeElement(container);
+		});
+
 		it("tabs hides an element", function() {
 			var element = addElement("div");
 			tabs.initialize(element, "someClass");
 			assert.equal(getClass(element), "someClass");
-			removeElement(element);
 		});
 
 		it("sets a class on an element without overwriting existing classes", function() {
@@ -17,7 +27,6 @@
 			element.setAttribute("class", "existingClass");
 			tabs.initialize(element, "newClass");
 			assert.equal(getClass(element), "existingClass newClass");
-			removeElement(element);
 		});
 
 		function getClass(element) {
@@ -26,7 +35,7 @@
 
 		function addElement(tagName) {
 			var element = document.createElement(tagName);
-			document.body.appendChild(element);
+			container.appendChild(element);
 
 			return element;
 		}
