@@ -1,9 +1,7 @@
-Mark a tab as active
+Deal with clicks?
 
-Hide all inactive content divs
+Mark tab as active
 
-Hide one inactive content div
+Rename "contentHideClass" --> "hiddenContentClass"?
 
-Use classList instead of getAttribute("class") in _tabs_test?
-
-Eliminate duplication in _tabs_test class tests?
+Change "default" to refer to tab rather than content element?
