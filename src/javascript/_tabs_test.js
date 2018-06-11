@@ -38,12 +38,27 @@
 			hiddenElement.setAttribute("class", "existingClass");
 
 			tabs.initialize({
-				default: defaultElement, 
 				content: [ defaultElement, hiddenElement ], 
+				default: defaultElement, 
 				contentHideClass: "newClass"
 			});
-			
+
 			assert.equal(getClass(hiddenElement), "existingClass newClass");
+		});
+
+		it("styles the default tab with a class", function() {
+			var defaultTab = addElement("div");
+			var defaultElement = addElement("div");
+
+			tabs.initialize({
+				tabs: [ defaultTab ],
+				content: [ defaultElement ],
+				default: defaultElement,
+				activeTabClass: "activeTab",
+				contentHideClass: "ignored"
+			});
+
+			assert.equal(getClass(defaultTab), "activeTab");
 		});
 
 		function getClass(element) {
