@@ -8,11 +8,11 @@
         var contentHideClass = options.contentHideClass;
         var activeTabClass = options.activeTabClass;
 
-        // TODO: throw an error when tabs is undefined
+        if (tabs === undefined) throw new Error("Expected options.tabs");
         if (content === undefined) throw new Error("Expected options.content");
         if (defaultElement === undefined) throw new Error("Expected options.defaultElement");
         if (contentHideClass === undefined) throw new Error("Expected options.contentHideClass");
-        // TODO: throw an error when activeTabClass is undefined
+        if (activeTabClass === undefined) throw new Error("Expected options.activeTabClass");
 
         content.forEach(function(element) {
             element.classList.add(contentHideClass);

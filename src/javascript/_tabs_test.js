@@ -17,14 +17,18 @@
 		});
 
 		it("hides all class content except default upon initialization", function() {
+			var defaultTab = addElement("div");
+
 			var element1 = addElement("div");
 			var defaultElement = addElement("div");
 			var element3 = addElement("div");
 
 			tabs.initialize({
+				tabs: [ defaultTab ],
 				content: [ element1, defaultElement, element3 ], 
 				default: defaultElement, 
-				contentHideClass: "hideClass"
+				contentHideClass: "hideClass",
+				activeTabClass: "activeTab"
 			});
 			
 			assert.equal(getClass(element1), "hideClass", "element 1 should be hidden");
@@ -33,14 +37,18 @@
 		});
 
 		it("preserves existing elements when hiding a content element", function() {
+			var defaultTab = addElement("div");
+			
 			var defaultElement = addElement("div");
 			var hiddenElement = addElement("div");
 			hiddenElement.setAttribute("class", "existingClass");
 
 			tabs.initialize({
+				tabs: [ defaultTab ],
 				content: [ defaultElement, hiddenElement ], 
 				default: defaultElement, 
-				contentHideClass: "newClass"
+				contentHideClass: "newClass",
+				activeTabClass: "activeTab"
 			});
 
 			assert.equal(getClass(hiddenElement), "existingClass newClass");
