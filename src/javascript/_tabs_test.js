@@ -16,7 +16,7 @@
 			removeElement(container);
 		});
 
-		it("tabs hides an element", function() {
+		it("sets a class on an element without previous classes", function() {
 			var element = addElement("div");
 			tabs.initialize(element, "someClass");
 			assert.equal(getClass(element), "someClass");
