@@ -111,7 +111,9 @@
 			undef: true,
 
 			node: true,
-			browser: true
+			browser: true,
+
+			esnext: true
 		};
 	}
 
