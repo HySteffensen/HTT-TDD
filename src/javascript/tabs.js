@@ -1,11 +1,19 @@
 (function() {
     "use strict";
 
-    exports.initialize = function initialize(defaultElement, elementList, className) {
-        elementList.forEach(function(element) {
-            element.classList.add(className);
+    exports.initialize = function initialize(options) {
+        var content = options.content;
+        var defaultElement = options.default;
+        var contentHideClass = options.contentHideClass;
+
+        if (content === undefined) throw new Error("Expected options.content");
+        if (defaultElement === undefined) throw new Error("Expected options.defaultElement");
+        if (contentHideClass === undefined) throw new Error("Expected options.contentHideClass");
+
+        content.forEach(function(element) {
+            element.classList.add(contentHideClass);
         });
-        defaultElement.classList.remove(className);
+        defaultElement.classList.remove(contentHideClass);
     };
 
 }());
