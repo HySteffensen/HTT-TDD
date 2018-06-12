@@ -4,22 +4,24 @@
     exports.initialize = function initialize(options) {
         var tabs = options.tabs;
         var content = options.content;
-        var defaultElement = options.default;
-        var contentHideClass = options.contentHideClass;
+        var defaultTab = options.default;
         var activeTabClass = options.activeTabClass;
+        var contentHideClass = options.contentHideClass;
 
         checkOption(tabs, "option.tabs");
         checkOption(content, "option.content");
-        checkOption(defaultElement, "option.defaultElement");
-        checkOption(contentHideClass, "option.contentHideClass");
+        checkOption(defaultTab, "option.default");
         checkOption(activeTabClass, "option.activeTabClass");
+        checkOption(contentHideClass, "option.contentHideClass");
+        
+        var activeIndex = findIndexOfDefaultElement(tabs, defaultTab);
+        var defaultContent = content[activeIndex];
 
         content.forEach(function(element) {
             element.classList.add(contentHideClass);
         });
-        defaultElement.classList.remove(contentHideClass);
-        var activeIndex = findIndexOfDefaultElement(content, defaultElement);
-        tabs[activeIndex].classList.add(activeTabClass);
+        defaultContent.classList.remove(contentHideClass);
+        defaultTab.classList.add(activeTabClass);
 
         function findIndexOfDefaultElement(contentTabs, defaultContentTab) {
             for (var i = 0; i < contentTabs.length; i++) {
