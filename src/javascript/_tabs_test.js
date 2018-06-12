@@ -33,13 +33,11 @@
 				activeTabClass: IRRELEVANT,
 				hiddenContentClass: HIDDEN_CONTENT
 			});
-			
-			assert.equal(getClass(content1), HIDDEN_CONTENT, "element 1 should be hidden");
-			assert.equal(getClass(defaultContent), "", "default element should not be hidden");
-			assert.equal(getClass(content3), HIDDEN_CONTENT, "element 3 should be hidden");
-		});
 
-		
+			assertContentHidden(content1, "element 1");
+			assertContentVisible(defaultContent, "element 2");
+			assertContentHidden(content3, "element 3");
+		});
 
 		it("styles the default tab with a class upon initialization", function() {
 			var tab1 = createTab();
@@ -105,6 +103,14 @@
 			assert.equal(getClass(defaultTab), "existingTabClass activeTab", "should preserve existing classes");
 			assert.equal(getClass(hiddenContent), "existingClass hiddenContent", "content element should preserve exisitng classes");
 		});
+
+		function assertContentHidden(element, elementName) {
+			assert.equal(getClass(element), HIDDEN_CONTENT, elementName + " should be hidden");
+		}
+
+		function assertContentVisible(element, elementName) {
+			assert.equal(getClass(element), "", elementName + " should not be hidden");
+		}
 
 		function getClass(element) {
 			return element.getAttribute("class");
