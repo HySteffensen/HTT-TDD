@@ -4,13 +4,13 @@
     exports.initialize = function initialize(options) {
         var tabs = options.tabs;
         var content = options.content;
-        var defaultTab = options.default;
+        var defaultTab = options.defaultTab;
         var activeTabClass = options.activeTabClass;
         var contentHideClass = options.contentHideClass;
 
         checkOption(tabs, "option.tabs");
         checkOption(content, "option.content");
-        checkOption(defaultTab, "option.default");
+        checkOption(defaultTab, "option.defaultTab");
         checkOption(activeTabClass, "option.activeTabClass");
         checkOption(contentHideClass, "option.contentHideClass");
         
