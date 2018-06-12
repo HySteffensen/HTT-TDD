@@ -39,7 +39,7 @@
 
 		
 
-		it("styles the default tab with a class", function() {
+		it("styles the default tab with a class upon initialization", function() {
 			var tab1 = createTab();
 			var defaultTab = createTab();
 			var tab3 = createTab();
@@ -57,6 +57,31 @@
 			assert.equal(getClass(tab1), null, "tab 1 should not be styled");
 			assert.equal(getClass(defaultTab), "activeTab", "default tab should be styled");
 			assert.equal(getClass(tab3), null, "tab 3 should not be styled");
+		});
+
+		it("switch content when tab is clicked", function() {
+			var tab1 = createTab();
+			var tab2 = createTab();
+			var tab3 = createTab();
+
+			var content1 = createTabContent();
+			var content2 = createTabContent();
+			var content3 = createTabContent();
+
+			tabs.initialize({
+				tabs: [ tab1, tab2, tab3 ],
+				content: [ content1, content2, content3 ],
+				defaultTab: tab1,
+				activeTabClass: "activeTab",
+				hiddenContentClass: "hiddenContent"
+			});
+
+			// click tab 2
+			// assert content 2 is visible
+			// assert content 1 is no longer visible
+
+			// assert tab 2 is visible
+			// assert tab 1 is no longer active
 		});
 
 		it("preserves existing classes when adding new classes", function() {
