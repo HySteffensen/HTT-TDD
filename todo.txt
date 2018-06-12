@@ -1,7 +1,2 @@
 Deal with clicks?
 
-Mark tab as active
-
-Rename "contentHideClass" --> "hiddenContentClass"?
-
-Change "default" to refer to tab rather than content element?
