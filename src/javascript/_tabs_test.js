@@ -5,6 +5,8 @@
 	var tabs = require("./tabs.js");
 
 	describe("Tabs", function() {
+
+		const HIDDEN_CONTENT = "hiddenContent";
 		const IRRELEVANT = "irrelevant";
 		var container;
 
@@ -17,7 +19,7 @@
 			removeElement(container);
 		});
 
-		it("hides all class content except default upon initialization", function() {
+		it("use a class to hide all content elements except the default upon initialization", function() {
 			var defaultTab = createTab(); 
 			
 			var content1 = createTabContent();
@@ -29,12 +31,12 @@
 				content: [ content1, defaultContent, content3 ], 
 				defaultTab: defaultTab, 
 				activeTabClass: IRRELEVANT,
-				hiddenContentClass: "hideClass"
+				hiddenContentClass: HIDDEN_CONTENT
 			});
 			
-			assert.equal(getClass(content1), "hideClass", "element 1 should be hidden");
+			assert.equal(getClass(content1), HIDDEN_CONTENT, "element 1 should be hidden");
 			assert.equal(getClass(defaultContent), "", "default element should not be hidden");
-			assert.equal(getClass(content3), "hideClass", "element 3 should be hidden");
+			assert.equal(getClass(content3), HIDDEN_CONTENT, "element 3 should be hidden");
 		});
 
 		
@@ -73,7 +75,7 @@
 				content: [ content1, content2, content3 ],
 				defaultTab: tab1,
 				activeTabClass: "activeTab",
-				hiddenContentClass: "hiddenContent"
+				hiddenContentClass: HIDDEN_CONTENT
 			});
 
 			// click tab 2
