@@ -77,12 +77,15 @@
 				hiddenContentClass: HIDDEN_CONTENT
 			});
 
-			// click tab 2
-			// assert content 2 is visible
-			// assert content 1 is no longer visible
+			tab2.click();
+			assertTabActive(tab2, "tab 2 should be active after click");
+			assertContentVisible(content2, "content 2 should be visible after click");
 
-			// assert tab 2 is visible
-			// assert tab 1 is no longer active
+			assertTabInactive(tab1, "tab 1 should no longer be active after click");
+			assertContentHidden(content1, "content 1 should no longer be visible after click");
+
+			tab3.click();
+			assertContentVisible(content3, "should be able to click multiple tabs");
 		});
 
 		it("preserves existing classes when adding new classes", function() {
@@ -105,24 +108,26 @@
 			assert.equal(getClass(hiddenContent), "existingClass hiddenContent", "content element should preserve exisitng classes");
 		});
 
-		function assertTabActive(element, elementName) {
-			assert.equal(getClass(element), ACTIVE_TAB, element + " should be active");			
+		function assertTabActive(element, message) {
+			assert.equal(getClass(element), ACTIVE_TAB, message);			
 		}
 
-		function assertTabInactive(element, elementName) {
-			assert.equal(getClass(element), null, elementName + " should not be active");
+		function assertTabInactive(element, message) {
+			assert.equal(getClass(element), "", message);
 		}
 
-		function assertContentHidden(element, elementName) {
-			assert.equal(getClass(element), HIDDEN_CONTENT, elementName + " should be hidden");
+		function assertContentHidden(element, message) {
+			assert.equal(getClass(element), HIDDEN_CONTENT, message);
 		}
 
-		function assertContentVisible(element, elementName) {
-			assert.equal(getClass(element), "", elementName + " should not be hidden");
+		function assertContentVisible(element, message) {
+			assert.equal(getClass(element), "", message);
 		}
 
 		function getClass(element) {
-			return element.getAttribute("class");
+			var result = element.getAttribute("class");
+			if (result === null) result = "";
+			return result;
 		}
 
 		function createTab() {

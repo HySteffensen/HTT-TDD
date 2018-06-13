@@ -10,17 +10,27 @@
         checkOption(options.hiddenContentClass, "option.hiddenContentClass");
 
         showTab(options.defaultTab, options);
+        
+        options.tabs.forEach(function(tabElement) {
+            tabElement.addEventListener("click", function(event) {
+                showTab(event.target, options);
+            });
+        });
     };
     
     function showTab(tabToShow, options) {
         var activeIndex = findIndex(options.tabs, tabToShow);
         var contentToShow = options.content[activeIndex];
 
-        options.content.forEach(function(element) {
-            element.classList.add(options.hiddenContentClass);
+        options.tabs.forEach(function(tabElement) {
+            tabElement.classList.remove(options.activeTabClass);
+        });
+        tabToShow.classList.add(options.activeTabClass);
+
+        options.content.forEach(function(tabElement) {
+            tabElement.classList.add(options.hiddenContentClass);
         });
         contentToShow.classList.remove(options.hiddenContentClass);
-        tabToShow.classList.add(options.activeTabClass);
     }
     
     function findIndex(contentTabs, defaultContentTab) {
