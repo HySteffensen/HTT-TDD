@@ -2,21 +2,26 @@
     "use strict";
     
     exports.initialize = function initialize(options) {
-        
+        validateOptions(options);
+        handleClicks(options);
+        showTab(options.defaultTab, options);
+    };
+
+    function validateOptions(options) {
         checkOption(options.tabs, "option.tabs");
         checkOption(options.content, "option.content");
         checkOption(options.defaultTab, "option.defaultTab");
         checkOption(options.activeTabClass, "option.activeTabClass");
         checkOption(options.hiddenContentClass, "option.hiddenContentClass");
+    }
 
-        showTab(options.defaultTab, options);
-        
+    function handleClicks(options) {
         options.tabs.forEach(function(tabElement) {
             tabElement.addEventListener("click", function(event) {
                 showTab(event.target, options);
             });
         });
-    };
+    }
     
     function showTab(tabToShow, options) {
         var activeIndex = findIndex(options.tabs, tabToShow);
